@@ -1,6 +1,13 @@
+from Services.pacientes import pacientes
+from Services.usuarios import usuarios
+from Services.setores import setores
+
+
 def admhos():
 
-    print("""
+    while True:
+
+        print("""
 ==================================
     ADMINISTRAÇÃO HOSPITALAR
 ==================================
@@ -13,5 +20,25 @@ def admhos():
 ==================================
 """)
 
-    try:
-        escolha = int(input('Selecione uma opção: '))
+        try:
+            escolha = int(input("Selecione uma opção: "))
+
+        except ValueError:
+            print("\nOpção inválida!")
+            continue
+
+        if escolha == 1:
+            pacientes()
+
+        elif escolha == 2:
+            usuarios()
+
+        elif escolha == 3:
+            setores()
+
+        elif escolha == 4:
+            print("\nVoltando ao menu principal...\n")
+            break
+
+        else:
+            print("\nOpção inválida!\n")

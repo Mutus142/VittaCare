@@ -1,9 +1,11 @@
-from menu import *
-from admhos import admhos
+from Services.admhos import admhos
 
-while True:
 
-    print('''
+def menu_principal():
+
+    while True:
+
+        print("""
 ==============================================
             VittaCare v0.1
     Sistema Integrado de Gestão Hospitalar
@@ -20,33 +22,22 @@ while True:
 
 ==============================================
         Selecione uma opção:
-==============================================''')
+==============================================
+""")
 
-    try:
-        escolha = int(input('Qual a sua opção: '))
+        try:
+            escolha = int(input("Qual a sua opção: "))
 
-    except ValueError:
-        print('\nOpção inválida! Digite apenas números.\n')
-        continue
+        except ValueError:
+            print("\nOpção inválida!")
+            continue
 
-    if escolha == 1:
-        admhos()
+        if escolha == 1:
+            admhos()
 
-    elif escolha == 2:
-        enfpro()
+        elif escolha == 6:
+            print("\nSaindo do VittaCare...")
+            break
 
-    elif escolha == 3:
-        atmedico()
-
-    elif escolha == 4:
-        relatorio()
-
-    elif escolha == 5:
-        admsis()
-
-    elif escolha == 6:
-        print('\nSaindo do VittaCare...')
-        break
-
-    else:
-        print('\nOpção inexistente! Tente novamente.\n')
+        else:
+            print("\nEssa funcionalidade ainda não foi implementada.\n")
