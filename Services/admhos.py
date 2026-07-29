@@ -1,6 +1,6 @@
-from Services.pacientes import pacientes
-from Services.usuarios import usuarios
+from Usuarios.usuarios import usuarios
 from Services.setores import setores
+from Pacientes.cadastropaciente import pacientes
 
 
 def admhos():

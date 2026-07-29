@@ -28,10 +28,10 @@ def pacientes():
             localizar()
 
         elif opcao == "3":
-            print("Alteração de setor em desenvolvimento.")
+            alterar_setor()
 
         elif opcao == "4":
-            print("Exclusão em desenvolvimento.")
+            remover_paciente()
 
         elif opcao == "5":
             break
@@ -62,14 +62,50 @@ def localizar():
 
     nome = input('Qual o nome do paciente que deseja procurar? ').lower()
 
-    for nome in paciente:
-        setor = paciente[setor]
-        idade = paciente[idade]
+    if paciente[nome]["nome"]:
 
-        print(f'''
-        Nome: {nome}
-        Setor: {setor}
-        Idade: {idade}''')
+        print(f"""
+        Nome: {paciente[nome]["nome"]}
+        Setor: {paciente[nome]["setor"]}
+        Idade: {paciente[nome]["idade"]}
+        """)
 
     else:
         print('Paciente não encontrado!')
+
+def alterar_setor():
+
+    nome = input('Qual o nome do paciente que deseja alterar? ').lower()
+
+    if nome in paciente:
+        setor = input('Qual é o novo setor? ')
+
+        paciente[nome]["setor"] = setor
+        print('Setor alterado! ')
+
+    else:
+        print('Paciente não encontrado!')
+
+def remover_paciente():
+
+    nome = input("Qual é o nome do paciente? ").lower()
+
+    if nome in paciente:
+
+        confirmacao = input("Tem certeza que deseja remover este paciente? (S/N): ").upper()
+
+        if confirmacao == "S":
+
+            del paciente[nome]
+            print("\nPaciente removido com sucesso!")
+
+        elif confirmacao == "N":
+
+            print("\nOperação cancelada!")
+
+        else:
+
+            print("\nOpção inválida!")
+
+    else:
+        print("\nPaciente não encontrado!")
