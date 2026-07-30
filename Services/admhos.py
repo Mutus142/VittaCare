@@ -1,5 +1,5 @@
 from Usuarios.usuarios import usuarios
-from Services.setores import setores
+from Setores.setores import setores
 from Pacientes.cadastropaciente import pacientes
 
 
