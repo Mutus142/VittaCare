@@ -1,7 +1,7 @@
 funcionario = {}
 
 
-def funcionarios():
+def usuarios():
 
     while True:
 
@@ -14,8 +14,7 @@ def funcionarios():
 2 - Alterar cargo
 3 - Excluir funcionário
 4 - Localizar funcionário
-5 - Listar funcionários
-6 - Voltar
+5 - Voltar
 
 =========================================
 Selecione uma opção:
@@ -37,9 +36,6 @@ Selecione uma opção:
             localizar()
 
         elif opcao == "5":
-            listar()
-
-        elif opcao == "6":
             break
 
         else:
@@ -101,3 +97,19 @@ def remover_funcionario():
 
     else:
         print("\nFuncionário não encontrado!")
+
+def localizar():
+
+    nome = input('Qual é o nome do funcionario? ').lower()
+
+    if nome in funcionario:
+
+        print(f'''
+            Nome: {funcionario[nome]["nome"]}
+            Setor: {funcionario[nome]["setor"]}
+            Cargo: {funcionario[nome]["cargo"]}
+            ''')
+        
+    else:
+        print('Paciente não encontrado!')
+        
