@@ -1,4 +1,5 @@
 from Services.admhos import admhos
+from Services.enfermagem import enfermagem
 
 
 def menu_principal():
@@ -34,6 +35,9 @@ def menu_principal():
 
         if escolha == 1:
             admhos()
+
+        elif escolha == 2:
+            enfermagem()
 
         elif escolha == 6:
             print("\nSaindo do VittaCare...")
