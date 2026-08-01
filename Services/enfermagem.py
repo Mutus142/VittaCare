@@ -1,6 +1,7 @@
+from Pacientes.cadastropaciente import paciente
 
 
-
+sinais = {}
 
 def enfermagem():
 
@@ -30,19 +31,51 @@ Selecione uma opção:
                     localizar()
 
                 elif opcao == 2:
-                     sinais_vitais()
+                    sinais_vitais()
 
                 elif opcao == 3:
-                     evo_paciente()
+                    evo_paciente()
 
                 elif opcao == 4:
-                     alta()
+                    alta()
 
-                elif opcao == 5
+                elif opcao == 5:
                     print('Voltando...')
                     break
 
                 else:
                      print('Opção invalida!')
 
-                
+
+def localizar():
+
+    nome = input('Qual o nome do paciente que deseja procurar? ').lower()
+
+    if paciente[nome]["nome"]:
+
+        print(f"""
+        Nome: {paciente[nome]["nome"]}
+        Setor: {paciente[nome]["setor"]}
+        Idade: {paciente[nome]["idade"]}
+        """)
+
+    else:
+        print('Paciente não encontrado!')
+
+def sinais_vitais():
+
+    nome = input('Qual o nome do paciente?')
+
+    if nome in paciente:
+        temperatura = int(input('Qual é a temperatura do paciente?'))
+        fq_car = int(input('Qual é a frequencia cardiaca do paciente?'))
+        fq_resp = int(input('Qual é a frequencia respiratoria do paciente?'))
+
+        sinais[nome] = {
+            "temperatura": temperatura,
+            "fq_car": fq_car,
+            "fq_resp": fq_resp
+        }
+
+    else:
+        print('Paciente não encontrado!')
