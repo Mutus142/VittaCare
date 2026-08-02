@@ -1,4 +1,4 @@
-setores = {}
+setor = {}
 
 
 def setores():
@@ -48,14 +48,19 @@ def cadastrar_setor():
 
     nome_setor = input("Qual é o nome do setor? ").lower()
 
-    andar_setor = int(input("Qual é o andar do setor? "))
+    try:
+        andar_setor = int(input("Qual é o andar do setor? "))
 
-    if nome_setor in setores:
+    except ValueError:
+        print("\nO andar deve ser um número!")
+        return
+
+    if nome_setor in setor:
         print("\nSetor já cadastrado!")
 
     else:
 
-        setores[nome_setor] = {
+        setor[nome_setor] = {
             "nome": nome_setor,
             "andar": andar_setor
         }
@@ -67,52 +72,59 @@ def alterar_setor():
 
     nome_setor = input("Qual é o nome do setor? ").lower()
 
-    if nome_setor in setores:
+    if nome_setor in setor:
 
         nome_novo = input("Qual é o novo nome do setor? ").lower()
 
-        setores[nome_setor]["nome"] = nome_novo
+        setor[nome_novo] = setor.pop(nome_setor)
+        setor[nome_novo]["nome"] = nome_novo
 
-        andar_novo = input(
-            "Você quer alterar o andar do setor? (S/N): "
+        alterar_andar = input(
+            "Deseja alterar o andar do setor? (S/N): "
         ).upper()
 
-        if andar_novo == "S":
+        if alterar_andar == "S":
 
-            novo_andar = int(
-                input("Qual é o novo andar? ")
-            )
+            try:
+                novo_andar = int(input("Qual é o novo andar? "))
 
-            setores[nome_setor]["andar"] = novo_andar
+            except ValueError:
+                print("\nAndar inválido!")
+                return
 
-        elif andar_novo == "N":
+            setor[nome_novo]["andar"] = novo_andar
 
-            print("\nOperação concluída!")
+        print("\nSetor alterado com sucesso!")
+
+    else:
+        print("\nSetor não encontrado!")
+
+
+def excluir_setor():
+
+    nome_setor = input(
+        "Qual é o nome do setor que deseja excluir? "
+    ).lower()
+
+    if nome_setor in setor:
+
+        confirmacao = input(
+            "Você tem certeza dessa operação? (S/N): "
+        ).upper()
+
+        if confirmacao == "S":
+
+            del setor[nome_setor]
+            print("\nSetor removido com sucesso!")
+
+        elif confirmacao == "N":
+
+            print("\nOperação cancelada!")
 
         else:
 
             print("\nOpção inválida!")
 
     else:
-        print("\nSetor não cadastrado!")
 
-
-def excluir_setor():
-
-    nome_setor = input('Qual é o nome do setor que deseja excluir? ')
-
-    if nome_setor in setores:
-        confirmacao = input('Voce tem certeza dessa operação? ').upper()
-
-        if confirmacao == 'S':
-            del setores[nome_setor]
-            print('Removendo setor...')
-
-        elif confirmacao == 'N':
-            print('Operação cancelada!')
-
-        else:
-            print('Opção invalida!')
-
-    else:
-        print('Setor não encontrado!')
+        print("\nSetor não encontrado!")

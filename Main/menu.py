@@ -45,3 +45,7 @@ def menu_principal():
 
         else:
             print("\nEssa funcionalidade ainda não foi implementada.\n")
+
+
+if __name__ == "__main__":
+    menu_principal()

@@ -2,6 +2,7 @@ from Pacientes.cadastropaciente import paciente
 
 
 sinais = {}
+evo = {}
 
 def enfermagem():
 
@@ -64,7 +65,7 @@ def localizar():
 
 def sinais_vitais():
 
-    nome = input('Qual o nome do paciente?')
+    nome = input('Qual o nome do paciente?').lower()
 
     if nome in paciente:
         temperatura = int(input('Qual é a temperatura do paciente?'))
@@ -79,3 +80,35 @@ def sinais_vitais():
 
     else:
         print('Paciente não encontrado!')
+
+
+def evo_paciente():
+
+    nome = input('Qual é o nome do paciente? ').lower()
+
+    if nome in paciente:
+        evo_pac = input('Qual é a evolução do paciente? ')
+
+        evo[nome] = {
+            "evo_pac": evo_pac
+        }
+
+    else:
+        print('Paciente não encontrado!')
+
+
+def alta():
+
+    nome = input('Qual o nome do paciente? ')
+
+    if nome in paciente:
+        alta_con = input('Voce quer dar alta para esse paciente? S/N ').upper()
+
+        if alta_con == 'S':
+            print('Agora esse paciente está com alta!')
+
+        elif alta_con == 'N':
+            print('Alta cancelada!')
+
+        else:
+            print('Opção invalida!')
