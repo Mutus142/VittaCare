@@ -1,3 +1,5 @@
+from DataBase.conexao import conexao, cursor
+
 paciente = {}
 
 
@@ -42,19 +44,19 @@ def pacientes():
 
 def cadastro():
 
-    nome = input("Qual é o nome do paciente? ").lower()
-    setor = input("Qual o setor do paciente? ")
-    idade = int(input("Qual a idade do paciente? "))
+        nome = input("Qual é o nome do paciente? ").lower()
+        setor = input("Qual o setor do paciente? ").lower()
+        idade = int(input("Qual a idade do paciente? "))
 
-    if nome in paciente:
-        print("Paciente já cadastrado!")
+        sql = """
+        INSERT INTO pacientes
+        (nome_paciente, idade, setor)
 
-    else:
-        paciente[nome] = {
-            "nome": nome,
-            "setor": setor,
-            "idade": idade
-        }
+        VALUES (%s, %s, %s)
+        """
+
+        cursor.execute(sql, (nome, idade, setor))
+        conexao.commit()
 
         print("Paciente cadastrado!")
 
@@ -62,16 +64,26 @@ def localizar():
 
     nome = input('Qual o nome do paciente que deseja procurar? ').lower()
 
-    if paciente[nome]["nome"]:
+    sql = """
+    SELECT nome_paciente, idade, setor
+    FROM pacientes
+    WHERE nome_paciente = %s
+    """
+
+    cursor.execute(sql, (nome,))
+
+    paciente = cursor.fetchone()
+
+    if paciente:
 
         print(f"""
-        Nome: {paciente[nome]["nome"]}
-        Setor: {paciente[nome]["setor"]}
-        Idade: {paciente[nome]["idade"]}
-        """)
+Nome: {paciente[0]}
+Idade: {paciente[1]}
+Setor: {paciente[2]}
+""")
 
     else:
-        print('Paciente não encontrado!')
+        print("Paciente não encontrado!")
 
 def alterar_setor():
 
